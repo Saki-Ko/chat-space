@@ -28,7 +28,7 @@ Things you may want to cover:
 
 |Column|Type|Options|
 |------|----|-------|
-|name|string|null: false|
+|name|string|null: false, add_index|
 |email|text|null: false|
 |password|string|null: false|
 
@@ -64,7 +64,7 @@ Things you may want to cover:
 |Column|Type|Options|
 |------|----|-------|
 |message|text||
-|image|text||
+|image|string||
 |user_id|integer|null: false, foreign_key: true|
 |group_id|integer|null: false, foreign_key: true|
 
