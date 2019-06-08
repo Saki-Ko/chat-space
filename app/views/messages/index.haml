@@ -1,37 +1,35 @@
-!!!
-%html{lang: "ja"}
-  %head
-    %meta{charset: "utf-8"}
-  %body
-    .wrapper
-      .menu
-        .menu__user
-          .menu__user__box
-            %span.menu__user__box__username seo
-            %span.menu__user__box__icons
-              %a #{fa_icon "edit"}
-              %a #{fa_icon "cog"}
-        .menu__group
-          .menu__group__box
-            .menu__group__box__groupname sample
-            .menu__group__box__message Good bye world!
+.wrapper
+  .menu
+    .menu__user
+      .menu__user__box
+        %span.menu__user__box__username seo
+        .menu__user__box__icons
+          = link_to "/" do
+            %span.menu__user__box__icons__edit
+              %i.fa.fa-edit
+          = link_to "/" do
+            %span.menu__user__box__icons__cog
+              %i.fa.fa-cog
+    .menu__group
+      .menu__group__box
+        .menu__group__box__groupname sample
+        .menu__group__box__message Good bye world!
 
-      .group
-        .group__header
-          .group__header__info
-            .group__header__info__groupname sample
-            .group__header__info__members Member: seo neko
-          .group__header__edit Edit
+  .group
+    .group__header
+      .group__header__info
+        .group__header__info__groupname sample
+        .group__header__info__members Member: seo neko
+      .group__header__edit Edit
 
-        .group__messages
-          - @messages.each do |message|
-            = render partial: "message", locals: {message: message}
-    
-        .form
-          .form__input
-            %form.form__input__box{:action => "/", :method => "post"}
-              %input{type: "text", placeholder: 'type a message', class: "form__input__box__text"}
-              %label.form__input__box__image
-                %i.fa.fa-image
-                %input{type: "file", name: "image", class: "form__input__box__image__tag"}
-          %span.form__send Send
+    .group__messages
+      = render partial: "message", collection: @messages
+
+    .form
+      .form__input
+        %form.form__input__box{action: "/", method: "post"}
+          %input{type: "text", placeholder: 'type a message', class: "form__input__box__text"}
+          %label.form__input__box__image
+            %i.fa.fa-image
+            %input{type: "file", name: "image", class: "form__input__box__image__tag"}
+      %span.form__send Send
