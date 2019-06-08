@@ -7,14 +7,14 @@
       .menu
         .menu__user
           .menu__user__box
-            %span.mmenu__user__box__username seo
+            %span.menu__user__box__username seo
             %span.menu__user__box__icons
               %a #{fa_icon "edit"}
               %a #{fa_icon "cog"}
-        .menu__groups
+        .menu__group
           .menu__group__box
-            .menu__group__groupname sample
-            .menu__group__current_message Good bye world!
+            .menu__group__box__groupname sample
+            .menu__group__box__message Good bye world!
 
       .group
         .group__header
@@ -29,9 +29,9 @@
     
         .form
           .form__input
-            %form.form__tag{:action => "/", :method => "post"}
-              %input{type: "text", placeholder: 'type a message', class: "form__text"}
-              %label.form__image
+            %form.form__input__box{:action => "/", :method => "post"}
+              %input{type: "text", placeholder: 'type a message', class: "form__input__box__text"}
+              %label.form__input__box__image
                 %i.fa.fa-image
-                %input{type: "file", name: "image", class: "form__image__input"}
+                %input{type: "file", name: "image", class: "form__input__box__image__tag"}
           %span.form__send Send
