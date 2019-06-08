@@ -10,6 +10,7 @@ body {
 
 a {
   cursor: pointer;
+  text-decoration: none;
 }
 
 .wrapper {
@@ -38,7 +39,13 @@ a {
           padding: 0;
         }
         &__icons {
-        float: right;
+          float: right;
+          &__edit {
+            color: $text-color__menu;
+          }
+          &__cog {
+            color: $text-color__menu;
+          }
         }
       }
     }
@@ -71,19 +78,19 @@ a {
       justify-content: space-between;
       border-bottom: solid 1px #eee;
       overflow: scroll;
-      .group__header__info{
+      &__info{
         margin-top: 35px;
-        .group__header__info__groupname {
+        &__groupname {
           margin-bottom: 15px;
           font-size: 20px;
           color: #333333;
         }
-        .group__header__info__members {
+        &__members {
           font-size: 12px;
           color: #999999;
         }
       }
-      .group__header__edit {
+      &__edit {
        height: 40px;
        position: absolute;
        right: 40px;
