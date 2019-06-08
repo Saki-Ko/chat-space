@@ -1,0 +1,37 @@
+!!!
+%html{lang: "ja"}
+  %head
+    %meta{charset: "utf-8"}
+  %body
+    .wrapper
+      .menu
+        .menu__user
+          .menu__user__box
+            %span.mmenu__user__box__username seo
+            %span.menu__user__box__icons
+              %a #{fa_icon "edit"}
+              %a #{fa_icon "cog"}
+        .menu__groups
+          .menu__group__box
+            .menu__group__groupname sample
+            .menu__group__current_message Good bye world!
+
+      .group
+        .group__header
+          .group__header__info
+            .group__header__info__groupname sample
+            .group__header__info__members Member: seo neko
+          .group__header__edit Edit
+
+        .group__messages
+          - @messages.each do |message|
+            = render partial: "message", locals: {message: message}
+    
+        .form
+          .form__input
+            %form.form__tag{:action => "/", :method => "post"}
+              %input{type: "text", placeholder: 'type a message', class: "form__text"}
+              %label.form__image
+                %i.fa.fa-image
+                %input{type: "file", name: "image", class: "form__image__input"}
+          %span.form__send Send
