@@ -2,12 +2,12 @@
   .menu
     .menu__user
       .menu__user__box
-        %span.menu__user__box__username seo
+        %span.menu__user__box__username= current_user.name
         .menu__user__box__icons
           = link_to "/" do
             %span.menu__user__box__icons__edit
               %i.fa.fa-edit
-          = link_to "/" do
+          = link_to edit_user_path(current_user) do
             %span.menu__user__box__icons__cog
               %i.fa.fa-cog
     .menu__group
