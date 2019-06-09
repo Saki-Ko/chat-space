@@ -4,16 +4,18 @@
       .menu__user__box
         %span.menu__user__box__username= current_user.name
         .menu__user__box__icons
-          = link_to "/" do
+          = link_to new_group_path do
             %span.menu__user__box__icons__edit
               %i.fa.fa-edit
           = link_to edit_user_path(current_user) do
             %span.menu__user__box__icons__cog
               %i.fa.fa-cog
     .menu__group
-      .menu__group__box
-        .menu__group__box__groupname sample
-        .menu__group__box__message Good bye world!
+      - current_user.groups.each do |group|
+        .menu__group__box
+          = link_to group_messages_path(group) do
+            .menu__group__box__groupname= group.name
+            .menu__group__box__message メッセージはまだありません
 
   .group
     .group__header
