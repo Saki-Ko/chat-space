@@ -1,37 +1,24 @@
 .wrapper
-  .menu
-    .menu__user
-      .menu__user__box
-        %span.menu__user__box__username= current_user.name
-        .menu__user__box__icons
-          = link_to new_group_path do
-            %span.menu__user__box__icons__edit
-              %i.fa.fa-edit
-          = link_to edit_user_path(current_user) do
-            %span.menu__user__box__icons__cog
-              %i.fa.fa-cog
-    .menu__group
-      - current_user.groups.each do |group|
-        .menu__group__box
-          = link_to group_messages_path(group) do
-            .menu__group__box__groupname= group.name
-            .menu__group__box__message メッセージはまだありません
+  = render 'shared/side_bar'
 
-  .group
-    .group__header
-      .group__header__info
-        .group__header__info__groupname sample
-        .group__header__info__members Member: seo neko
-      .group__header__edit Edit
+  .chat
+    .header
+      .left-header
+        .left-header__title sample
+        .left-header__memberlist
+          Member :
+          .left-header__memberlist_member seo neko
+      .right-header
+        .right-header__button Edit
 
-    .group__messages
-      = render partial: "message", collection: @messages
+    .messages
+      = render @messages
 
     .form
-      .form__input
-        %form.form__input__box{action: "/", method: "post"}
-          %input{type: "text", placeholder: 'type a message', class: "form__input__box__text"}
-          %label.form__input__box__image
-            %i.fa.fa-image
-            %input{type: "file", name: "image", class: "form__input__box__image__tag"}
-      %span.form__send Send
+      = form_for [@group, @message] do |f|
+        = f.text_field :content, class: 'form__message', placeholder: 'type a message'
+        .form__mask
+          = f.label :image, class: 'form__mask__image' do
+            = fa_icon 'picture-o', class: 'icon'
+            = f.file_field :image, class: 'hidden'
+        = f.submit 'Send', class: 'form__submit'
