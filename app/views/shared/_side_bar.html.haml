@@ -1,17 +1,19 @@
-.menu
-  .menu__user
-    .menu__user__box
-      %span.menu__user__box__username= current_user.name
-      .menu__user__box__icons
+.side-bar
+  .header
+    %h3.header__name
+      = current_user.name
+    %ul.header__lists
+      %li.list
         = link_to new_group_path do
-          %span.menu__user__box__icons__edit
-            %i.fa.fa-edit
+          = fa_icon 'pencil-square-o', class: 'icon'
+      %li.list
         = link_to edit_user_path(current_user) do
-          %span.menu__user__box__icons__cog
-            %i.fa.fa-cog
-  .menu__group
-    - current_user.groups.each do |group|
-      .menu__group__box
+          = fa_icon 'cog', class: 'icon'
+  .groups
+    .group
+      - current_user.groups.each do |group|
         = link_to group_messages_path(group) do
-          .menu__group__box__groupname= group.name
-          .menu__group__box__message メッセージはまだありません
+          .group__name
+            = group.name
+          .group__message
+            = group.show_last_message
