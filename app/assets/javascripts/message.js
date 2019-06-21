@@ -60,7 +60,6 @@ $(function(){
           $.each(messages, function(i, message){
             insertHTML.push(buildHTML(message));
           });
-          console.log(insertHTML);
           $('.messages').append(insertHTML)
           $('.messages').animate({scrollTop: $('.messages')[0].scrollHeight});
         })
