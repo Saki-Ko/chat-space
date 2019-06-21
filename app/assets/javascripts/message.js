@@ -1,6 +1,6 @@
 $(function(){
   function buildHTML(message){
-    var html = `<div class="message">
+    var html = `<div class="message" data-id=${message.id}>
                   <div class="upper-message">
                     <div class="upper-message__user-name">
                       ${message.user_name}
@@ -44,4 +44,31 @@ $(function(){
       $('.form__submit').attr('disabled', false);
       })
   })
+
+  $(window).bind("load", function(){
+    if(document.URL.match("/messages")) {
+      var reloadMessages = function() {
+        var last_message_id = $('.message:last').data('id');
+        $.ajax({
+          url: './api/messages',
+          type: 'get',
+          dataType: 'json',
+          data: {id: last_message_id}
+        })
+        .done(function(messages) {
+          var insertHTML = [];
+          $.each(messages, function(i, message){
+            insertHTML.push(buildHTML(message));
+          });
+          console.log(insertHTML);
+          $('.messages').append(insertHTML)
+          $('.messages').animate({scrollTop: $('.messages')[0].scrollHeight});
+        })
+        .fail(function() {
+          console.log('error');
+        });
+      };
+      setInterval(reloadMessages, 5000);
+    }
+  });
 });
