@@ -18,3 +18,5 @@
 
 # 追加
 public/uploads/*
+
+config/secrets.yml
